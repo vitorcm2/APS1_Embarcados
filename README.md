@@ -34,8 +34,6 @@ Vide imagem a seguir:
 ## Estrutura
 - [`musicas.h`](/Projeto_Musica/src/musicas.h): Contém as notas das músicas, a duração dessas notas e como foi feita a struct musica.
 
-- [`musicas.c`](/Projeto_Musica/src/musicas.c): 
-
 - [`main.c`](/Projeto_Musica/src/main.c): utiliza o `musicas.h` para criar as músicas em formato de struct. Inicializa a placa e os pinos que vão ser utilizados ,há a criação da função de tocar música, o código de pause, e toda a estrutura para ascender e apagar as leds conforme o usuario aperta os botões.
 
 ## Funções
@@ -45,10 +43,10 @@ Vide imagem a seguir:
 - A (1 item embarcado + 1 item C)
   - Embarcado
     - [ ] Utiliza dois falantes (para fazer uma música mais complexa);
-    - [x] Utiliza interrupção nos botões;
+    - [ ] Utiliza interrupção nos botões;
   - C
-    - [x] Cria um arquivo .c .h com as funções de reprodução musical;
-    - [x] Músicas organizadas em vetores de structs (ponteiros);
+    - [ ] Cria um arquivo .c .h com as funções de reprodução musical;
+    - [ ] Músicas organizadas em vetores de structs (ponteiros);
 
 - B+
   - [ ] Uma terceira música
