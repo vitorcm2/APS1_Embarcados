@@ -97,6 +97,11 @@ void play(int notas[],int duracao[],int tamanho,int velocidade);
 void play(int notas[],int duracao[],int tamanho,int velocidade){
 
 	for (int i=0; i<tamanho;i++){
+		if (!pio_get(BUT_PIO,PIO_INPUT,BUT_PIO_IDX_MASK)){
+			delay_s(1);
+			while (pio_get(BUT_PIO,PIO_INPUT,BUT_PIO_IDX_MASK)) {	
+			}
+		}
 		for (int x=0; x < duracao[i]; x++){
 			int wait = 1000000/(2*notas[i]);
 			pio_set(PIOA,BUZ_PIO_IDX_MASK);
@@ -190,6 +195,7 @@ int main(void)
 	
 	
 	int musica1,musica2,musica3;
+	int musicatocando = 0;
 
 	// super loop
 	// aplicacoes embarcadas não devem sair do while(1).
@@ -200,29 +206,40 @@ int main(void)
 		musica3 = pio_get(BUT3_PLACA_PIO, PIO_INPUT, BUT3_PLACA_MASK);
 		
 		if (musica1 != 1){
+			musicatocando = 1;
 			pio_clear(LED1_PLACA_PIO, LED1_PLACA_MASK);
 			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
 			pio_set(LED3_PLACA_PIO,LED3_PLACA_MASK);
 			
-			//MUSICA PIRATAS DO CARIBE
-			play(musicapiratas.notas,musicapiratas.duracao,musicapiratas.tamanho,500);
-			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
+			
 			
 		}
 		else if (musica2 != 1){
+			musicatocando = 2;
 			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
 			pio_clear(LED2_PLACA_PIO,LED2_PLACA_MASK);
 			pio_set(LED3_PLACA_PIO,LED3_PLACA_MASK);
 			
-			//MUSICA MARIO BROS
-			play(musicamario.notas,musicamario.duracao,musicamario.tamanho,1000);
-			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
+			
 		}
 		else if (musica3 != 1){
+			musicatocando = 3;
 			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
 			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
 			pio_clear(LED3_PLACA_PIO,LED3_PLACA_MASK);
 			
+		}
+		
+		if (musicatocando == 1){
+			//MUSICA PIRATAS DO CARIBE 
+			play(musicapiratas.notas,musicapiratas.duracao,musicapiratas.tamanho,500);
+			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
+		}
+		
+		else if (musicatocando == 2){
+			//MUSICA MARIO BROS
+			play(musicamario.notas,musicamario.duracao,musicamario.tamanho,1200);
+			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
 		}
 	}
 	return 0;
