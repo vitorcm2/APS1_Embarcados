@@ -29,14 +29,14 @@ Vide imagem a seguir:
   - O `LED 3` do periférico `OLED1 Xplained` acende se a música 3 estiver tocando.
   - O `LED` do Microcontrolador `Atmel SAME70 Xplained` pisca no ritmo da música que estiver tocando.
   
-## Estrutura:
+## Estrutura
 - [`musicas.h`](/Projeto_Musica/src/musicas.h): Contém as notas das músicas, a duração dessas notas e como foi feita a struct musica.
 
 - [`musicas.c`](/Projeto_Musica/src/musicas.c): 
 
 - [`main.c`](/Projeto_Musica/src/main.c): utiliza o `musicas.h` para criar as músicas em formato de struct. Inicializa a placa e os pinos que vão ser utilizados ,há a criação da função de tocar música, o código de pause, e toda a estrutura para ascender e apagar as leds conforme o usuario aperta os botões.
 
-## Funções:
+## Funções
 - `void play(int notas[],int duracao[],int tamanho,int velocidade)`: recebe os vetores de notas,duração que essas notas vão tocar, tamanho desses vetores e velocidades que as notas vão ser tocadas. Com esses argumentos ativa e desativa o buzzer em variações de tempo necessarias para gerar a nota esperada.
 
 ## Rúbrica
