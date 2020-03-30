@@ -17,7 +17,7 @@ O Periférico`OLED1 Xplained` deve ser conectado ao Microcontrolador `Atmel SAME
 
 Vide imagem a seguir:
 
-<img src="APS1_Esquema.PNG" alt="esquema" width="200"/>
+<img src="APS1_Esquema.PNG" alt="esquema" width=50% height=50%/>
 
 ![](APS1_Esquema.PNG =250x)
 
