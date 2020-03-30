@@ -17,6 +17,8 @@ O Periférico`OLED1 Xplained` deve ser conectado ao Microcontrolador `Atmel SAME
 
 Vide imagem a seguir:
 
+![](APS1_Esquema.PNG)
+
 ## Botões e LED's
 - Botões:
   - O `Button 1` do periférico `OLED1 Xplained` seleciona a música 1.
