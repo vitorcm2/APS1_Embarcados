@@ -18,6 +18,7 @@
 /************************/
 
 #include "asf.h"
+#include "musicas.h"
 
 /************************/
 /* defines                                                              */
@@ -71,143 +72,6 @@
 #define LED3_PLACA_MASK (1u<< LED3_PLACA_IDX)
 
 
-const int buzzer = 10; //Define pin 10, can use other PWM pins  (5,6 or 9)
-//Note pins 3 and 11 can't be used when using the tone function in Arduino Uno
-const int songspeed = 1.5; //Change to 2 for a slower version of the song, the bigger the number the slower the song
-
-//melodia do MARIO THEME
-int melodia[] = {660,660,660,510,660,770,380,510,380,320,440,480,450,430,380,660,760,860,700,760,660,520,580,480,510,380,320,440,480,450,430,380,660,760,860,700,760,660,520,580,480,500,760,720,680,620,650,380,430,500,430,500,570,500,760,720,680,620,650,1020,1020,1020,380,500,760,720,680,620,650,380,430,500,430,500,570,585,550,500,380,500,500,500,500,760,720,680,620,650,380,430,500,430,500,570,500,760,720,680,620,650,1020,1020,1020,380,500,760,720,680,620,650,380,430,500,430,500,570,585,550,500,380,500,500,500,500,500,500,500,580,660,500,430,380,500,500,500,500,580,660,870,760,500,500,500,500,580,660,500,430,380,660,660,660,510,660,770,380};
- 
-//duraçao de cada nota do mario
-int duracaodasnotas[] = {100,100,100,100,100,100,100,100,100,100,100,80,100,100,100,80,50,100,80,50,80,80,80,80,100,100,100,100,80,100,100,100,80,50,100,80,50,80,80,80,80,100,100,100,100,150,150,100,100,100,100,100,100,100,100,100,100,150,200,80,80,80,100,100,100,100,100,150,150,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,100,150,150,100,100,100,100,100,100,100,100,100,100,150,200,80,80,80,100,100,100,100,100,150,150,100,100,100,100,100,100,100,100,100,100,100,100,100,60,80,60,80,80,80,80,80,80,60,80,60,80,80,80,80,80,60,80,60,80,80,80,80,80,80,100,100,100,100,100,100,100};
- 
-
-//*****************************************
-#define NOTE_C4  262   //Defining note frequency MUSICA PIRATAS DO CARIBE
-#define NOTE_D4  294
-#define NOTE_E4  330
-#define NOTE_F4  349
-#define NOTE_G4  392
-#define NOTE_A4  440
-#define NOTE_B4  494
-#define NOTE_C5  523
-#define NOTE_D5  587
-#define NOTE_E5  659
-#define NOTE_F5  698
-#define NOTE_G5  784
-#define NOTE_A5  880
-#define NOTE_B5  988
-//*****************************************
-
-int notes[] = {       //Note of the song, 0 is a rest/pulse
-   NOTE_E4, NOTE_G4, NOTE_A4, NOTE_A4, 0, 
-   NOTE_A4, NOTE_B4, NOTE_C5, NOTE_C5, 0, 
-   NOTE_C5, NOTE_D5, NOTE_B4, NOTE_B4, 0,
-   NOTE_A4, NOTE_G4, NOTE_A4, 0,
-   
-   NOTE_E4, NOTE_G4, NOTE_A4, NOTE_A4, 0, 
-   NOTE_A4, NOTE_B4, NOTE_C5, NOTE_C5, 0, 
-   NOTE_C5, NOTE_D5, NOTE_B4, NOTE_B4, 0,
-   NOTE_A4, NOTE_G4, NOTE_A4, 0,
-   
-   NOTE_E4, NOTE_G4, NOTE_A4, NOTE_A4, 0, 
-   NOTE_A4, NOTE_C5, NOTE_D5, NOTE_D5, 0, 
-   NOTE_D5, NOTE_E5, NOTE_F5, NOTE_F5, 0,
-   NOTE_E5, NOTE_D5, NOTE_E5, NOTE_A4, 0,
-   
-   NOTE_A4, NOTE_B4, NOTE_C5, NOTE_C5, 0, 
-   NOTE_D5, NOTE_E5, NOTE_A4, 0, 
-   NOTE_A4, NOTE_C5, NOTE_B4, NOTE_B4, 0,
-   NOTE_C5, NOTE_A4, NOTE_B4, 0,
-
-   NOTE_A4, NOTE_A4, 
-   //Repeat of first part
-   NOTE_A4, NOTE_B4, NOTE_C5, NOTE_C5, 0, 
-   NOTE_C5, NOTE_D5, NOTE_B4, NOTE_B4, 0,
-   NOTE_A4, NOTE_G4, NOTE_A4, 0,
-
-   NOTE_E4, NOTE_G4, NOTE_A4, NOTE_A4, 0, 
-   NOTE_A4, NOTE_B4, NOTE_C5, NOTE_C5, 0, 
-   NOTE_C5, NOTE_D5, NOTE_B4, NOTE_B4, 0,
-   NOTE_A4, NOTE_G4, NOTE_A4, 0,
-   
-   NOTE_E4, NOTE_G4, NOTE_A4, NOTE_A4, 0, 
-   NOTE_A4, NOTE_C5, NOTE_D5, NOTE_D5, 0, 
-   NOTE_D5, NOTE_E5, NOTE_F5, NOTE_F5, 0,
-   NOTE_E5, NOTE_D5, NOTE_E5, NOTE_A4, 0,
-   
-   NOTE_A4, NOTE_B4, NOTE_C5, NOTE_C5, 0, 
-   NOTE_D5, NOTE_E5, NOTE_A4, 0, 
-   NOTE_A4, NOTE_C5, NOTE_B4, NOTE_B4, 0,
-   NOTE_C5, NOTE_A4, NOTE_B4, 0,
-   //End of Repeat
-
-   NOTE_E5, 0, 0, NOTE_F5, 0, 0,
-   NOTE_E5, NOTE_E5, 0, NOTE_G5, 0, NOTE_E5, NOTE_D5, 0, 0,
-   NOTE_D5, 0, 0, NOTE_C5, 0, 0,
-   NOTE_B4, NOTE_C5, 0, NOTE_B4, 0, NOTE_A4,
-
-   NOTE_E5, 0, 0, NOTE_F5, 0, 0,
-   NOTE_E5, NOTE_E5, 0, NOTE_G5, 0, NOTE_E5, NOTE_D5, 0, 0,
-   NOTE_D5, 0, 0, NOTE_C5, 0, 0,
-   NOTE_B4, NOTE_C5, 0, NOTE_B4, 0, NOTE_A4
-};
-//*****************************************
-int duration[] = {         //duration of each note (in ms) Quarter Note is set to 250 ms
-  125, 125, 250, 125, 125, 
-  125, 125, 250, 125, 125,
-  125, 125, 250, 125, 125,
-  125, 125, 375, 125, 
-  
-  125, 125, 250, 125, 125, 
-  125, 125, 250, 125, 125,
-  125, 125, 250, 125, 125,
-  125, 125, 375, 125, 
-  
-  125, 125, 250, 125, 125, 
-  125, 125, 250, 125, 125,
-  125, 125, 250, 125, 125,
-  125, 125, 125, 250, 125,
-
-  125, 125, 250, 125, 125, 
-  250, 125, 250, 125, 
-  125, 125, 250, 125, 125,
-  125, 125, 375, 375,
-
-  250, 125,
-  //Rpeat of First Part
-  125, 125, 250, 125, 125,
-  125, 125, 250, 125, 125,
-  125, 125, 375, 125, 
-  
-  125, 125, 250, 125, 125, 
-  125, 125, 250, 125, 125,
-  125, 125, 250, 125, 125,
-  125, 125, 375, 125, 
-  
-  125, 125, 250, 125, 125, 
-  125, 125, 250, 125, 125,
-  125, 125, 250, 125, 125,
-  125, 125, 125, 250, 125,
-
-  125, 125, 250, 125, 125, 
-  250, 125, 250, 125, 
-  125, 125, 250, 125, 125,
-  125, 125, 375, 375,
-  //End of Repeat
-  
-  250, 125, 375, 250, 125, 375,
-  125, 125, 125, 125, 125, 125, 125, 125, 375,
-  250, 125, 375, 250, 125, 375,
-  125, 125, 125, 125, 125, 500,
-
-  250, 125, 375, 250, 125, 375,
-  125, 125, 125, 125, 125, 125, 125, 125, 375,
-  250, 125, 375, 250, 125, 375,
-  125, 125, 125, 125, 125, 500
-};
-
-
 /************************/
 /* constants                                                            */
 /************************/
@@ -221,7 +85,7 @@ int duration[] = {         //duration of each note (in ms) Quarter Note is set t
 /************************/
 
 void init(void);
-
+void play(int notas[],int duracao[],int tamanho,int velocidade);
 /************************/
 /* interrupcoes                                                         */
 /************************/
@@ -229,6 +93,31 @@ void init(void);
 /************************/
 /* funcoes                                                              */
 /************************/
+
+void play(int notas[],int duracao[],int tamanho,int velocidade){
+
+	for (int i=0; i<tamanho;i++){
+		for (int x=0; x < duracao[i]; x++){
+			int wait = 1000000/(2*notas[i]);
+			pio_set(PIOA,BUZ_PIO_IDX_MASK);
+			pio_set(LED_PIO,LED_PIO_IDX_MASK);
+			delay_us(wait);
+			pio_clear(PIOA,BUZ_PIO_IDX_MASK);
+			pio_clear(LED_PIO,LED_PIO_IDX_MASK);
+			delay_us(wait);
+		}
+		pio_set(LED_PIO,LED_PIO_IDX_MASK);
+		delay_us(velocidade*duracao[i]);
+	}
+}
+
+
+
+
+
+
+
+
 
 void init(void)
 {
@@ -273,19 +162,35 @@ void init(void)
 /************************/
 /* Main                                                                 */
 /************************/
-#define BUT3_PLACA_PIO PIOC
-#define BUT3_PLACA_PIO_ID ID_PIOC
-#define BUT3_PLACA_IDX 13u
-#define BUT3_PLACA_MASK (1u<< BUT3_PLACA_IDX)
+
 // Funcao principal chamada na inicalizacao do uC.
 int main(void)
 {
 	// inicializa sistema e IOs
 	init();
-	int musica1,musica2,musica3,pause;
-	int musica = 0;
-	int pausou = 0;
-	int lugardamusica =0;
+	
+	musica musicapiratas;
+	musica musicamario;
+
+	//MUSICA PIRATAS DO CARIBE
+	for (int i = 0; i < sizeof(notes) / sizeof(notes[0]); i++){
+		musicapiratas.notas[i] = notes[i];
+		musicapiratas.duracao[i] = duration[i];
+	}
+	musicapiratas.tamanho = sizeof(notes) / sizeof(notes[0]);
+
+	//MUSICA MARIO
+	for (int i = 0; i < sizeof(melodia) / sizeof(melodia[0]); i++){
+		musicamario.notas[i] = melodia[i];
+		musicamario.duracao[i] = duracaodasnotas[i];
+	}
+	musicamario.tamanho = sizeof(melodia) / sizeof(melodia[0]);
+
+
+	
+	
+	int musica1,musica2,musica3;
+
 	// super loop
 	// aplicacoes embarcadas não devem sair do while(1).
 	while (1)
@@ -295,97 +200,30 @@ int main(void)
 		musica3 = pio_get(BUT3_PLACA_PIO, PIO_INPUT, BUT3_PLACA_MASK);
 		
 		if (musica1 != 1){
-			musica = 1;
 			pio_clear(LED1_PLACA_PIO, LED1_PLACA_MASK);
 			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
 			pio_set(LED3_PLACA_PIO,LED3_PLACA_MASK);
+			
+			//MUSICA PIRATAS DO CARIBE
+			play(musicapiratas.notas,musicapiratas.duracao,musicapiratas.tamanho,500);
+			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
+			
 		}
 		else if (musica2 != 1){
-			musica = 2;
 			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
 			pio_clear(LED2_PLACA_PIO,LED2_PLACA_MASK);
 			pio_set(LED3_PLACA_PIO,LED3_PLACA_MASK);
+			
+			//MUSICA MARIO BROS
+			play(musicamario.notas,musicamario.duracao,musicamario.tamanho,1000);
+			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
 		}
 		else if (musica3 != 1){
-			musica = 3;
 			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
 			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
 			pio_clear(LED3_PLACA_PIO,LED3_PLACA_MASK);
 			
 		}
-		
-		// MUSICA PIRATAS DO CARIBE
-		if (musica == 1){
-			int tamanho = sizeof(notes)/sizeof(notes[0]);
-			for (int i=0; i<tamanho;i++){
-				pause = pio_get(BUT_PIO,PIO_INPUT,BUT_PIO_IDX_MASK);
-				if (pause != 1){
-					musica = 0;
-					pausou = 4;
-					lugardamusica = i;
-					break;
-				}
-				if (pausou == 4){
-					i = lugardamusica;
-					lugardamusica = 0;
-					pausou = 0;
-				}
-				for (int x=0; x < duration[i]; x++){
-					int wait = 1000000/(2*notes[i]);
-					pio_set(PIOA,BUZ_PIO_IDX_MASK);
-					pio_set(LED_PIO,LED_PIO_IDX_MASK);
-					delay_us(wait);
-					pio_clear(PIOA,BUZ_PIO_IDX_MASK);
-					pio_clear(LED_PIO,LED_PIO_IDX_MASK);
-					delay_us(wait);
-				}
-				pio_set(LED_PIO,LED_PIO_IDX_MASK);
-				delay_us(500*duration[i]);
-			}
-		}
-
-
-		if (musica == 2){
-			//MUSICA MARIO BROS
-			int tamanho = sizeof(melodia)/sizeof(melodia[0]);
-			for (int i=0; i<tamanho;i++){
-				pause = pio_get(BUT_PIO,PIO_INPUT,BUT_PIO_IDX_MASK);
-				if (pause != 1){
-					musica = 0;
-					pausou = 5;
-					lugardamusica = i;
-					break;
-				}
-				if (pausou == 5){
-					i = lugardamusica;
-					lugardamusica = 0;
-					pausou = 0;
-				}
-				for (int x=0; x < duracaodasnotas[i]; x++){
-					int wait = 1000000/(2*melodia[i]);
-					pio_set(PIOA,BUZ_PIO_IDX_MASK);
-					pio_clear(LED_PIO,LED_PIO_IDX_MASK);
-					delay_us(wait);
-					pio_clear(PIOA,BUZ_PIO_IDX_MASK);
-					
-					delay_us(wait);
-				}
-				pio_set(LED_PIO,LED_PIO_IDX_MASK);
-				delay_us(1000*duracaodasnotas[i]);
-			}
-		}
-
-		
-		
-		
-			
-	
-		
-
-		
-		//else{
-		//	_pio_set(PIOC, LED_PIO_IDX_MASK);
-		//}
 	}
 	return 0;
 }
