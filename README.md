@@ -6,6 +6,8 @@ A entrega final deste projeto consiste em um sistema embarcado que reproduz mús
 - `mudar de música`
 - `parar / iniciar a música`
 
+Assista à [vídeo demonstração](https://drive.google.com/file/d/1KONPX50yYcAzFm2OShyRnGQtY6X4caMz/view) do projeto funcionando.
+
 ## Materiais
 - `1x Microcontrolador Atmel SAME70 Xplained`
 - `1x Periférico OLED1 Xplained`
@@ -34,10 +36,10 @@ Vide imagem a seguir:
 ## Estrutura
 - [`musicas.h`](/Projeto_Musica/src/musicas.h): Contém as notas das músicas, a duração dessas notas e como foi feita a struct musica.
 
-- [`main.c`](/Projeto_Musica/src/main.c): utiliza o `musicas.h` para criar as músicas em formato de struct. Inicializa a placa e os pinos que vão ser utilizados ,há a criação da função de tocar música, o código de pause, e toda a estrutura para ascender e apagar as leds conforme o usuario aperta os botões.
+- [`main.c`](/Projeto_Musica/src/main.c): utiliza o `musicas.h` para criar as músicas em formato de struct. Inicializa a placa e os pinos que vão ser utilizados, contém  a função de tocar música, o código de pause, e toda a estrutura para acender e apagar os leds conforme o usuario aperta os botões.
 
 ## Funções
-- `void play(int notas[],int duracao[],int tamanho,int velocidade)`: recebe os vetores de notas,duração que essas notas vão tocar, tamanho desses vetores e velocidades que as notas vão ser tocadas. Com esses argumentos ativa e desativa o buzzer em variações de tempo necessarias para gerar a nota esperada.
+- `void play(int notas[],int duracao[],int tamanho,int velocidade)`: recebe os vetores de notas, duração que essas notas vão tocar, tamanho desses vetores e velocidades que as notas vão ser tocadas. Com esses argumentos ativa e desativa o buzzer em variações de tempo necessarias para gerar a nota esperada.
 
 ## Rúbrica
 - A (1 item embarcado + 1 item C)
@@ -49,7 +51,7 @@ Vide imagem a seguir:
     - [ ] Músicas organizadas em vetores de structs (ponteiros);
 
 - B+
-  - [ ] Uma terceira música
+  - [x] Uma terceira música
 
 - B
   - [x] README.md explica o que é o projeto e como o software foi estruturado;
