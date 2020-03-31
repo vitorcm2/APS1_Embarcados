@@ -147,4 +147,34 @@ int duration[] = {         //duration of each note (in ms) Quarter Note is set t
   125, 125, 125, 125, 125, 500
 };
 
+#define c  261
+#define d  294
+#define e  329
+#define f  349
+#define g  391
+#define gS  415
+#define a  440
+#define aS  455
+#define b  466
+#define cH  523
+#define cSH  554
+#define dH  587
+#define dSH  622
+#define eH  659
+#define fH  698
+#define fSH  740
+#define gH  784
+#define gSH  830
+#define aH  880
+
+
+//marcha imperial by nicksort @github
+int imperial_march_notes[] = {
+	a,a,a,f,cH,a,f,cH,a,0,eH,eH,eH,fH,cH,gS,f,cH,a,0
+};
+
+int imperial_march_tempo[] = {
+	500,500,500,350,150,500,350,150,650,500,500,500,500,350,150,500,350,150,650,500
+};
+
 
