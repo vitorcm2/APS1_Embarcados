@@ -176,22 +176,28 @@ int main(void)
 	
 	musica musicapiratas;
 	musica musicamario;
+	musica musicamarcha;
 
 	//MUSICA PIRATAS DO CARIBE
-	for (int i = 0; i < sizeof(notes) / sizeof(notes[0]); i++){
+	for (unsigned int i = 0; i < sizeof(notes) / sizeof(notes[0]); i++){
 		musicapiratas.notas[i] = notes[i];
 		musicapiratas.duracao[i] = duration[i];
 	}
 	musicapiratas.tamanho = sizeof(notes) / sizeof(notes[0]);
 
 	//MUSICA MARIO
-	for (int i = 0; i < sizeof(melodia) / sizeof(melodia[0]); i++){
+	for (unsigned int i = 0; i < sizeof(melodia) / sizeof(melodia[0]); i++){
 		musicamario.notas[i] = melodia[i];
 		musicamario.duracao[i] = duracaodasnotas[i];
 	}
 	musicamario.tamanho = sizeof(melodia) / sizeof(melodia[0]);
 
-
+	//MUSICA MARCHA IMPERIAL
+	for (unsigned int i = 0; i < sizeof(imperial_march_notes) / sizeof(imperial_march_notes[0]); i++){
+		musicamarcha.notas[i] = imperial_march_notes[i];
+		musicamarcha.duracao[i] = imperial_march_tempo[i];
+	}
+	musicamarcha.tamanho = sizeof(imperial_march_notes) / sizeof(imperial_march_notes[0]);
 	
 	
 	int musica1,musica2,musica3;
@@ -234,12 +240,20 @@ int main(void)
 			//MUSICA PIRATAS DO CARIBE 
 			play(musicapiratas.notas,musicapiratas.duracao,musicapiratas.tamanho,500);
 			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
+			musicatocando = 0;
 		}
 		
 		else if (musicatocando == 2){
 			//MUSICA MARIO BROS
 			play(musicamario.notas,musicamario.duracao,musicamario.tamanho,1200);
 			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
+			musicatocando = 0;
+		}
+		else if (musicatocando == 3){
+			//MUSICA MARIO BROS
+			play(musicamarcha.notas,musicamarcha.duracao,musicamarcha.tamanho,10);
+			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
+			musicatocando = 0;
 		}
 	}
 	return 0;
