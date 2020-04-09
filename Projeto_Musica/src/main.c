@@ -252,7 +252,7 @@ int main(void)
 		else if (musicatocando == 3){
 			//MUSICA MARIO BROS
 			play(musicamarcha.notas,musicamarcha.duracao,musicamarcha.tamanho,10);
-			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
+			pio_set(LED3_PLACA_PIO,LED3_PLACA_MASK);
 			musicatocando = 0;
 		}
 	}
