@@ -211,29 +211,21 @@ int main(void)
 		musica2 = pio_get(BUT2_PLACA_PIO, PIO_INPUT, BUT2_PLACA_MASK);
 		musica3 = pio_get(BUT3_PLACA_PIO, PIO_INPUT, BUT3_PLACA_MASK);
 		
+			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK); 
+			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
+			pio_set(LED3_PLACA_PIO, LED1_PLACA_MASK);  
+
 		if (musica1 != 1){
 			musicatocando = 1;
 			pio_clear(LED1_PLACA_PIO, LED1_PLACA_MASK);
-			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
-			pio_set(LED3_PLACA_PIO,LED3_PLACA_MASK);
-			
-			
-			
 		}
 		else if (musica2 != 1){
 			musicatocando = 2;
-			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
 			pio_clear(LED2_PLACA_PIO,LED2_PLACA_MASK);
-			pio_set(LED3_PLACA_PIO,LED3_PLACA_MASK);
-			
-			
 		}
 		else if (musica3 != 1){
 			musicatocando = 3;
-			pio_set(LED1_PLACA_PIO, LED1_PLACA_MASK);
-			pio_set(LED2_PLACA_PIO,LED2_PLACA_MASK);
 			pio_clear(LED3_PLACA_PIO,LED3_PLACA_MASK);
-			
 		}
 		
 		if (musicatocando == 1){
