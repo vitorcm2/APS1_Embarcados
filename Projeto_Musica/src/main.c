@@ -71,7 +71,6 @@
 #define LED3_PLACA_IDX 11u
 #define LED3_PLACA_MASK (1u<< LED3_PLACA_IDX)
 
-
 /************************/
 /* constants                                                            */
 /************************/
